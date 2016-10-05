@@ -28,7 +28,7 @@ app.post('/add', function(req, res){
     console.log(req.body);
 
 var client = {
-      name: req.body.first_name || null,
+      name: req.body.name || null,
       phone: req.body.phone || null,
       email: req.body.email || null,
       address: req.body.address || null,
@@ -61,7 +61,7 @@ app.post('/update', function(req, res){
   console.log(req.body);
 
   var client = {
-        name: req.body.first_name || null,
+        name: req.body.name || null,
         phone: req.body.phone || null,
         email: req.body.email || null,
         address: req.body.address || null,
@@ -77,6 +77,13 @@ app.post('/update', function(req, res){
           console.log(result.error);
         }
       });
+});
+
+//show client
+app.get('/csv', function(req, res){
+  logic.list(function(data){
+  res.send(data);
+  });
 });
 
 // delete client

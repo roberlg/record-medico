@@ -43,6 +43,15 @@ exports.search = function(email, callback) {
   });
 };
 
+//show client
+exports.list = function(callback) {
+    fs.readFile('client_info.csv', function(error, data) {
+      csv.parse(data, { columns: true }, function(error, data) {
+        callback(data);
+      });
+    });
+};
+
 // update client
 exports.edit = function(updateClient, callback){
   fs.readFile('client_info.csv', function(error, data){
