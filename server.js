@@ -82,7 +82,7 @@ app.post('/update', function(req, res){
 //show client
 app.get('/csv', function(req, res){
   logic.list(function(data){
-  res.send(data);
+  render.send(data);
   });
 });
 
