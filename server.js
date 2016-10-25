@@ -43,6 +43,21 @@ var client = {
     });
 });
 
+// add cita
+app.post('/citas', function(req, res){
+  console.log(req.body);
+
+var cita = {
+      customer: req.body.customer || null,
+      therapist: req.body.therapist || null,
+      date: req.body.date || null
+    };
+
+    logic.new(cita, function() {
+      res.status(201).send('created');
+    });
+});
+
 //search client
 app.post('/search', function(req, res){
   console.log(req.body);
@@ -82,9 +97,12 @@ app.post('/update', function(req, res){
 //show client
 app.get('/csv', function(req, res){
   logic.list(function(data){
-  render.send(data);
+    res.send( { 'data':  data});
+
   });
 });
+
+
 
 // delete client
 app.post('/remove', function(req, res){

@@ -1,22 +1,19 @@
-$(document).ready(function() {
-  $('button[type=submit]').on('click', function(evt) {
-    evt.preventDefault();
-    var data = {
-      name: $('input[name=name]').val(),
-      phone: $('input[name=phone]').val(),
-      email: $('input[name=email]').val(),
-      address: $('input[name=address]').val(),
-      state: $('input[name=state]').val(),
-      zip_code: $('input[name=zip_code]').val()
-      // is_hidden: $(false).val()
-     };
-    $.post('/csv', data, function() {
-      console.log('success');
-    }, 'json');
-  });
+function getCsv(){
 
-  
-});
+
+$('#datatable').DataTable( {
+      "ajax": '/csv',
+      "columns": [
+                  { "data": "name" },
+                  { "data": "phone" },
+                  { "data": "email" },
+                  { "data": "address" },
+                  { "data": "state" },
+                  { "data": "zip_code" }
+              ]
+    });
+
+}
 
 // $(document).ready(function() {
 //     $('#datatable').dataTable();

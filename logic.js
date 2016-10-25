@@ -28,6 +28,21 @@ exports.new = function(client, callback) {
   });
 };
 
+// add cita
+exports.appointment = function(cita, callback) {
+  fs.readFile('citas.csv', function(error, data) {
+    csv.parse(data, { columns: true }, function(error, data) {
+      data.push(client);
+      csv.stringify(data, { header: true }, function(error, data) {
+        fs.writeFile('citas.csv', data, function(error) {
+          callback();
+        });
+      });
+    });
+  });
+};
+
+
 // find client
 exports.search = function(email, callback) {
   fs.readFile('client_info.csv', function(error, data) {
